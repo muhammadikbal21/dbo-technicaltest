@@ -6,7 +6,6 @@ Feature: Success Checkout The Product
     And click login button
     Then user is navigated to the home page
 
-  @TestHere
   Scenario: User success checkout the product
     When click add to cart button
     And click view cart textbutton

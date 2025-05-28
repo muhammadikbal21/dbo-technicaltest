@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageObjects.SuccessCheckoutPage;
@@ -25,6 +26,11 @@ public class SuccessCheckoutSteps {
         WebElement addProductElement = WaitUtils.waitForElementToBeVisible(successCheckoutPage.getAddToCartButton());
 
         Assert.assertTrue("add product should be clickable", addProductElement.isEnabled());
+
+        // ini berfungsi sebagai scrolling agar button langsung diarahkan pada tempatnya dan tidak tertutupi iklan/ads pada web nya
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addProductElement);
+
+        Thread.sleep(1000);
         addProductElement.click();
 
         WaitUtils.waitForElementToBeVisible(successCheckoutPage.getSuccessAddedProductModal());
